@@ -1,11 +1,8 @@
 class Api::V1::UsersController < ApplicationController
   def show
     address = params[:address]
-    if User.find_by(address: address)
-    render json: address, status: 200
-    else
-    render json: "not found", status: 200
-    end
+    @user = User.find_or_create_by(address: address)
+    render json: @user.contracts, status: 200
   end
 
   def new
