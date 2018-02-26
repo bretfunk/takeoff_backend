@@ -2,11 +2,15 @@ class Api::V1::UsersController < ApplicationController
   def show
     address = params[:address]
     @user = User.find_or_create_by(address: address)
-    render json: @user.contracts, status: 200
+    if @user
+      render json: @user.contracts, status: 200
+    else
+      render json: "No Campaigns Found", status: 200
+    end
   end
 
   def new
-    @user = User.find_or_create_by(address: params[:address])
+    @user = user.find_or_create_by(address: params[:address])
     render json: @user.contracts.create(
       owner: params[:owner],
       description: params[:description],
