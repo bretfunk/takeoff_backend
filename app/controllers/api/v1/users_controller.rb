@@ -10,7 +10,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def new
-    @user = user.find_or_create_by(address: params[:address])
+    @user = User.find_or_create_by(address: params[:address])
     render json: @user.contracts.create(
       owner: params[:owner],
       description: params[:description],
