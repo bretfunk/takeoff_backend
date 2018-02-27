@@ -20,8 +20,4 @@ class Api::V1::UsersController < ApplicationController
       start: params[:start]
     ), status: 204
   end
-
-  def test
-    render json: "test"
-  end
 end
